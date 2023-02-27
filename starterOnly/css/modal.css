@@ -69,7 +69,7 @@ img {
 
 @media screen and (max-width: 1109px) {
   .topnav{
-    z-index: 2;
+    z-index: 1;
   }
   .header-logo img{
     width: 160px;
@@ -352,7 +352,8 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close {
+.close,
+.close-confirm {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -363,6 +364,8 @@ input[data-error]::after {
   transform: scale(0.7);
 }
 .close:before,
+.close-confirm:before,
+.close-confirm:after, 
 .close:after {
   position: absolute;
   left: 15px;
@@ -371,10 +374,12 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.close:before, 
+.close-confirm:before {
   transform: rotate(45deg);
 }
-.close:after {
+.close:after,
+.close-confirm:after {
   transform: rotate(-45deg);
 }
 .btn-submit,

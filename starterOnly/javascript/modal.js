@@ -9,9 +9,12 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
+const modalbgConfirm = document.querySelector(".bground-confirm");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+const closeIcon = document.querySelector(".close");
+const closeIconConfirm = document.querySelector(".close-confirm");
+const confirmBtn = document.querySelector(".btn-confirm");
 const emailInput = document.querySelector("#email");
 
 
@@ -24,13 +27,24 @@ function launchModal() {
 }
 
 
-//Close event wth function
-closeBtn.addEventListener("click", close);
+//Close event wth function 
+closeIcon.addEventListener("click", close);
+closeIconConfirm.addEventListener("click", sucess);
 
 function close(){
   modalbg.style.display = "none";
 }
 
+function sucess(){
+  modalbgConfirm.style.display = "none";
+}
+
+//Form confirm with "Fermer"
+confirmBtn.addEventListener("click", confirm);
+
+function confirm(){
+  modalbgConfirm.style.display = "none";
+}
 
 //Email check 
 
@@ -43,10 +57,4 @@ for(let index = 0; index < formData.length; index++) {
   }
   
 }
-// console.log(emailInput.value);
 
-
-//validation
-function validate(){
-  console.log("Form done :)");
-}
