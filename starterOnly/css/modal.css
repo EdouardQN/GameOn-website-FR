@@ -190,6 +190,14 @@ main {
   background-color: rgb(253, 253, 255);
 }
 
+@media screen and (max-width:359px) {
+  .topnav{
+
+    margin: 1.5%;
+  }
+  
+}
+
 .content {
   margin: 15% auto;
   width: 100%;
