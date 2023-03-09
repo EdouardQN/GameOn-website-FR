@@ -9,9 +9,13 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
+const modalbgConfirm = document.querySelector(".bground-confirm");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+const closeIcon = document.querySelector(".close");
+const closeIconConfirm = document.querySelector(".close-confirm");
+const validBtn = document.querySelector(".button-submit");
+const confirmBtn = document.querySelector(".btn-confirm");
 const emailInput = document.querySelector("#email");
 
 
@@ -24,29 +28,28 @@ function launchModal() {
 }
 
 
-//Close event wth function
-closeBtn.addEventListener("click", close);
+//Close event wth function (cancel)
+closeIcon.addEventListener("click", close);
+closeIconConfirm.addEventListener("click", sucess);
 
 function close(){
   modalbg.style.display = "none";
 }
 
-
-//Email check 
-
-for(let index = 0; index < formData.length; index++) {
-
-  const element = formData[index].value;
-  
-  if(element === emailInput.value){
-    console.log("I m here m");
-  }
-  
+function sucess(){
+  modalbgConfirm.style.display = "none";
 }
-// console.log(emailInput.value);
 
+//Form confirm (buttons)
+confirmBtn.addEventListener("click", confirm);
+validBtn.addEventListener("click", val);
 
-//validation
-function validate(){
-  console.log("Form done :)");
+function val(){
+  modalbg.style.display = "none";
+  modalbgConfirm.style.display = "flex";
 }
+
+function confirm(){
+  modalbgConfirm.style.display = "none";
+}
+

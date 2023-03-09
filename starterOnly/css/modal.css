@@ -69,7 +69,7 @@ img {
 
 @media screen and (max-width: 1109px) {
   .topnav{
-    z-index: 2;
+    z-index: 1;
   }
   .header-logo img{
     width: 160px;
@@ -190,12 +190,24 @@ main {
   background-color: rgb(253, 253, 255);
 }
 
+.bground-confirm {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
 @media screen and (max-width:359px) {
   .topnav{
 
     margin: 1.5%;
   }
-  
+
 }
 
 .content {
@@ -210,6 +222,29 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+
+.content-confirm{
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+
+}
+
+.confirm-signup{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .modal-body {
@@ -325,7 +360,8 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close {
+.close,
+.close-confirm {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -336,6 +372,8 @@ input[data-error]::after {
   transform: scale(0.7);
 }
 .close:before,
+.close-confirm:before,
+.close-confirm:after, 
 .close:after {
   position: absolute;
   left: 15px;
@@ -344,10 +382,12 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.close:before, 
+.close-confirm:before {
   transform: rotate(45deg);
 }
-.close:after {
+.close:after,
+.close-confirm:after {
   transform: rotate(-45deg);
 }
 .btn-submit,
@@ -362,6 +402,15 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+.btn-confirm{
+  position: absolute;
+  left: 25%;
+  bottom: 5%;
+
+}
+
+
 /* custom select styles */
 .custom-select {
   position: relative;
