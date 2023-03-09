@@ -60,9 +60,6 @@ function validate() {
     formData[i].setAttribute("data-error", message);
 
   }
-  if (validity === true) {
-    modalbgConfirm.style.display = "flex";
-  }
   validity = true;
 
   for (i = 0; i <= formData.length; i++) {
@@ -166,10 +163,8 @@ formBtn.addEventListener("click", confirm);
 function confirm() {
 
   if (validate()) {
-    console.log("dans le confirm");
     modalbgConfirm.style.display = "flex";
-
-    console.log("quelquechose");
+    modalbg.style.display = "none";
   }
 }
 
