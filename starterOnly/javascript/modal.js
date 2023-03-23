@@ -15,7 +15,6 @@ const formData = document.querySelectorAll(".formData");
 const croixBtn = document.querySelector(".close");
 const formBtn = document.querySelector(".button");
 const closeC = document.querySelector(".close-confirm");
-const confirmBtn = document.querySelector(".btn-confirm");
 
 
 // launch modal event
@@ -37,30 +36,44 @@ function close() {
 function closeConfirm() {
   modalbgConfirm.style.display = "none";
 }
-
 //verification entrées utilisateur
-let validity,
-  validity2;
+let validity = false;
+
+//récupération booléen validate()
+let validBool = validity;
+const clickValid = function(validBool){
+
+  return validBool;
+};
+// clickValid(validity);
+
+//Message d'erreur si remplissage faux
+const errorData = function (message) {
+  formData[i].setAttribute("data-error-visible", "true");
+  formData[i].setAttribute("data-error", message);
+  modalbgConfirm.style.display = "none";
+  
+
+}
+let prenom;
+ 
 function validate() {
+console.log("je suis dans validate");
 
-  //récupération des données utilisateurs
-  const prenom = document.getElementById("first").value;
-  const nom = document.getElementById("last").value;
-  const mail = document.getElementById("email").value;
-  // Regex pour l'adresse mail, gm indique une vérification globale
-  const emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}', "gm");
-  const dateNaissance = document.getElementById("birthdate").value;
-  const nbrTournois = document.getElementById("quantity").value;
-  const tournoisInt = parseInt(nbrTournois);
-  const conditionsUser = document.getElementById("checkbox1").checked;
 
-  //Message d'erreur si remplissage faux
-  const errorData = function (message) {
-    formData[i].setAttribute("data-error-visible", "true");
-    formData[i].setAttribute("data-error", message);
+//récupération des données utilisateurs
+prenom = document.getElementById("first").value;
+const nom = document.getElementById("last").value;
+const mail = document.getElementById("email").value;
+// Regex pour l'adresse mail, gm indique une vérification globale
+const emailRegex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}', "gm");
+const dateNaissance = document.getElementById("birthdate").value;
+const nbrTournois = document.getElementById("quantity").value;
+const tournoisInt = parseInt(nbrTournois);
+const conditionsUser = document.getElementById("checkbox1").checked;
 
-  }
   validity = true;
+  modalbgConfirm.style.display = "flex";
 
   for (i = 0; i <= formData.length; i++) {
 
@@ -120,6 +133,10 @@ function validate() {
         errorData("Vous devez saisir un nombre");
         validity = false;
       }
+      else if(tournoisInt < 0 || tournoisInt > 99){
+        errorData("Vous devez saisir un nombre entre 0 et 99");
+        validity = false;
+      }
       else {
         formData[i].setAttribute("data-error-visible", "false");
       }
@@ -138,40 +155,67 @@ function validate() {
     }
 
   }
-  //  const formulaire = document.getElementsByTagName('form');
-  // console.log(formulaire);
-  //  console.log(formulaire[0].onsubmit);
-  // validity2 = validity;
+  if (validity === true) {
+    clickValid(validity);
+    console.log("true saved");
+    document.getElementById("form").submit();
+    // modalbgConfirm.classList.add('confirm-active');
+  }
+  else{
+    console.log("validity est false");
+  }
+  
+
   return validity;
 
 }
 
-// console.log(validate());
-// validity = true;
-
-// console.log(validity2);
+// sessionStorage.setItem('display', 'flex');
+// sessionStorage.setItem('validity', true);
+// let validStorage = sessionStorage.getItem('validity');
+// let flex = sessionStorage.getItem('display');
+// console.log(flex);
+// console.log(validStorage);
 
 //Form confirm (buttons)
-confirmBtn.addEventListener("click", validateConfirm);
+formBtn.addEventListener("click", validateConfirm);
 
 function validateConfirm() {
-  modalbgConfirm.style.display = "none";
 
-}
-
-formBtn.addEventListener("click", confirm);
-function confirm() {
-
-  if (validate()) {
-    modalbgConfirm.style.display = "flex";
-    modalbg.style.display = "none";
+  //clickValid(validity);
+  if (validBool === true) {
+    modalbgConfirm.classList.add('confirm-active');
+    
   }
+  else{
+    console.log ("erreur");
+    // modalbgConfirm.classList.remove('confirm-active');
+
+
+  }
+//autre méthode récupère valeurs champ dans un booléen var valid =false, valid === validate()
+
+// console.log (clickValid());
+  //  if (clickValid(validity) === true) {
+  //    validStorage = true;
+  //   console.log(validStorage);
+  //   flex = "flex";
+    
+  // }
+  // else{
+  //   validStorage = false;
+  //   console.log("non flex");
+  //   console.log(validStorage);
+
+
+  // }
+
 }
 
-//modalbgConfirm.style.display = "flex";
+// console.log(clickValid(validity));
 
-
-
+// console.log(flex);
+// console.log(validStorage);
 
 
 
