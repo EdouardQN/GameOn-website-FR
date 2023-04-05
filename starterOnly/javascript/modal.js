@@ -21,26 +21,21 @@ const btnC = document.querySelector(".btn-confirm");
 //Validation form bouton
 formBtn.addEventListener("click", function (event){
  
-  validate();
+  // validate();
+  const validity = validate();
   //prevent l'envoie du formulaire pour pouvoir rendre visible la confirmation
   event.preventDefault(); 
+  console.log(validity);
   if(validity){
-
-    modalbgConfirm.style.visibility = "visible";
     modalbg.style.display = "none";
-    console.log("là");
-
-  }
-  else{
-    console.log("ici");
-
+    modalbgConfirm.style.display = "flex";
   }
 });
 
 btnC.addEventListener("click", function(){
-  modalbgConfirm.style.visibility = "hidden";
+  modalbgConfirm.style.display = "none";
   //je submit seulement après avoir cliquer sur fermer 
-  form.submit();
+  // form.submit();
 
 });
 
@@ -76,10 +71,11 @@ const errorData = function (i, message) {
 
 }
 
-//verification entrées utilisateur
-let validity = true;
+
 
 function validate() {
+  //verification entrées utilisateur
+  let validity = true;
   console.log("je suis dans validate");
 
   // récupération des données utilisateurs
@@ -100,84 +96,73 @@ function validate() {
   }
   else {
     formData[0].setAttribute("data-error-visible", "false");
-    validity = true;
+    
   }
 
 
-  // if (nom === "" || nom.length < 2) {
+   if (nom === "" || nom.length < 2) {
     
-  //   errorData(1, "Votre nom doit contenir au moins 2 lettres");
-  //   validity = false;
+     errorData(1, "Votre nom doit contenir au moins 2 lettres");
+     validity = false;
 
-  // }
-  // else {
-  //   validity = true;
-  // }
-
-
-  // if (mail === "") {
-  //   i = 2
-  //   errorData("Votre adresse mail doit être renseignée");
-  //   validity = false;
-
-  // }
-  // else if (!(mail.match(emailRegex))) {
-  //   i = 2;
-  //   errorData("Votre adresse mail est invalide");
-  //   validity = false;
-  // }
-  // else {
-  //   formData[i].setAttribute("data-error-visible", "false");
-  // }
-
-  // if (dateNaissance === "") {
-  //   i = 3;
-  //   errorData("Votre date de naissance n'est pas renseignée")
-  //   validity = false;
-  // }
-  // else {
-  //   formData[i].setAttribute("data-error-visible", "false");
-  // }
-
-  // if (isNaN(tournoisInt)) {
-  //   i = 4;
-  //   errorData("Vous devez saisir un nombre");
-  //   validity = false;
-  // }
-  // else if (tournoisInt < 0 || tournoisInt > 99) {
-  //   errorData("Vous devez saisir un nombre entre 0 et 99");
-  //   validity = false;
-  // }
-  // else {
-  //   formData[i].setAttribute("data-error-visible", "false");
-  // }
+   }
+   else {
+    formData[1].setAttribute("data-error-visible", "false");
+    
+   }
 
 
-  // if (conditionsUser === false) {
-  //   i = 6;
-  //   errorData("Vous devez lire et accepter les conditions d'utilisation");
-  //   validity = false;
+   if (mail === "") {
 
-  // }
-  // else {
-  //   formData[i].setAttribute("data-error-visible", "false");
-  // }
+     errorData(2, "Votre adresse mail doit être renseignée");
+     validity = false;
 
-  // if (validity) {
+   }
+   else if (!(mail.match(emailRegex))) {
 
-  //   console.log("true saved");
+     errorData(2, "Votre adresse mail est invalide");
+     validity = false;
+   }
+   else {
+     formData[2].setAttribute("data-error-visible", "false");
+     
+   }
 
-  //   modalbgConfirm.style.visibility = "visible";
-  //   // modalbgConfirm.classList.add('confirm-active');
-  // }
-  // else {
-  //   console.log("validity est false");
-  // }
+   if (dateNaissance === "") {
+     errorData(3, "Votre date de naissance n'est pas renseignée")
+     validity = false;
+   }
+   else {
+     formData[3].setAttribute("data-error-visible", "false");
+   }
+
+   if (isNaN(tournoisInt)) {
+     errorData(4, "Vous devez saisir un nombre");
+     validity = false;
+   }
+   else if (tournoisInt < 0 || tournoisInt > 99) {
+     errorData("Vous devez saisir un nombre entre 0 et 99");
+     validity = false;
+   }
+   else {
+     formData[4].setAttribute("data-error-visible", "false");
+   }
+
+
+   if (conditionsUser === false) {
+     errorData(6, "Vous devez lire et accepter les conditions d'utilisation");
+     validity = false;
+
+   }
+   else {
+     formData[6].setAttribute("data-error-visible", "false");
+   }
+
   return validity;
 
 }
 
 
-console.log(validity);
-console.log(modalbgConfirm.style.visibility);
+// console.log(validity);
+// console.log(modalbgConfirm.style.visibility);
 
