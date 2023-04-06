@@ -35,7 +35,7 @@ formBtn.addEventListener("click", function (event){
 btnC.addEventListener("click", function(){
   modalbgConfirm.style.display = "none";
   //je submit seulement après avoir cliquer sur fermer 
-  // form.submit();
+  form.submit();
 
 });
 
